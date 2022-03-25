@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
 ## Integrating to Miro
-The integration is created as a [Miro Web-Plugin](https://developers.miro.com/docs/web-plugins-features) where the Digizuite Unified DAM Connector is embedded into miro.
+The integration is created as a [Miro Web-Plugin](https://developers.miro.com/docs/web-plugins-features) where the Digizuite Unified DAM Connector is embedded into miro. A blogpost can be found [here](https://medium.com/@brianbaklaursen/enabling-digizuite-content-for-miro-ead83c466a4e)
 
 Following have been added to index.html
 ```
