@@ -1,6 +1,49 @@
-# DigizuiteForMiro
+# Digizuite for Miro
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+
+## Integrating to Miro
+The integration is created as a [Miro Web-Plugin](https://developers.miro.com/docs/web-plugins-features) where the Digizuite Unified DAM Connector is embedded into miro.
+
+Following have been added to index.html
+```
+<script src="https://miro.com/app/static/sdk.1.1.js"></script>
+```
+
+Ensuring also to init miro on onInit of the app.comonent
+```
+miro.onReady(() => {
+      const icon24 =
+        '<g> ..... </g>';
+      miro.initialize({
+        extensionPoints: {
+          bottomBar: {
+            title: 'Digizuite for Miroz',
+            svgIcon: icon24,
+            onClick: () => {
+              miro.board.ui.openLibrary('', { title: 'Digizuite for Miro' });
+            },
+          },
+          getWidgetMenuItems: () =>
+            Promise.resolve({
+              tooltip: 'Digizuite for Miroz',
+              svgIcon: icon24,
+              onClick: (widgets: any) => {
+                console.log('onClick', widgets);
+              },
+            }),
+        },
+      });
+```
+
+On click of an asset then create the image with the following
+```
+await miro.board.widgets.create({ type: 'image', title: asset.title, url: asset.downloadUrl });
+```
+
+
+Please read the Unified DAM Conenctor documentation for more information [here])https://digizuite.atlassian.net/wiki/spaces/DD/pages/3092348945/MM5.5+Unified+DAM+Connector).
+
 
 ## Development server
 
