@@ -1,0 +1,36 @@
+{
+  "name": "Digizuite Embedded Chrome Extension",
+  "description": "Add Digizuite Embedded UI to your browser and benefit from your single source of truth",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "tabs",
+    "scripting"
+  ],  
+  "content_scripts": [
+    {
+      "run_at": "document_end",
+      "matches": [
+          "https://*/*",
+          "http://*/*"
+      ],
+      "js": ["after.js"]
+    } 
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "icons": {
+    "16": "/images/logo_16_px.png",
+    "32": "/images/logo_32_px.png",
+    "48": "/images/logo_48_px.png",
+    "128": "/images/logo_128_px.png"
+  },
+  "web_accessible_resources": [
+    { "resources": ["images/logo_32_px.png"], "matches": ["https://*/*"]}
+  ]
+}
