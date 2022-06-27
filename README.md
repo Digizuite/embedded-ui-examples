@@ -6,3 +6,6 @@ Read more [here](/digizuite-chrome-extension/README.md).
 
 ## Digizuite for Miro
 Read more [here](/digizuite-for-miro/README.md).
+
+## Digizuite for Umbraco
+Read more [here](/digizuite-for-umbraco/README.md).

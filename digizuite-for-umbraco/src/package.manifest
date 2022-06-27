@@ -1,0 +1,27 @@
+﻿{
+  "propertyEditors": [
+    {
+        "alias": "Digizuite.AssetPicker",
+        "name": "Digizuite - Asset Picker",
+        "editor": {
+            "view": "~/App_Plugins/DigizuiteAssetPicker/digizuite-asset-picker.html",
+            "valueType": "STRING"
+        },
+        "prevalues": {
+            "fields": [
+                {
+                    "label": "DAMs",
+                    "description": "",
+                    "key": "dams",
+                    "valueType": "STRING",
+                    "view": "~/App_Plugins/DigizuiteAssetPicker/prevalue-editor/digizuite-asset-picker.prevalue.html"
+                }
+            ]
+        }
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/DigizuiteAssetPicker/prevalue-editor/digizuite-asset-picker.prevalue.controller.js",
+    "~/App_Plugins/DigizuiteAssetPicker/digizuite-asset-picker.controller.js"
+  ]
+}

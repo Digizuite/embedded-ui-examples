@@ -1,0 +1,18 @@
+﻿<div ng-controller="digizuiteAssetPickerController as vm" ng-switch="model.config.multiple">
+    <img id="imgSelectedAsset" width="270px" height="100%"/>
+    <iframe id="digizuite-iframe"
+            width="800"
+            height="600"
+            hidden="true">
+    </iframe>
+    <button name="btnChooseTheImage"
+            style="vertical-align: top;"
+            ng-click="showHideDigizuiteAssetSelector()">
+        Choose The Asset
+    </button>
+    <button name="btnClearAsset"
+            style="vertical-align: top;"
+            ng-click="clearDigizuiteAsset()">
+        Clear
+    </button>
+</div>
