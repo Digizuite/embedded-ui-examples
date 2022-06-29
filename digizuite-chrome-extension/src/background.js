@@ -1,3 +1,6 @@
-chrome.runtime.onInstalled.addListener(() => {
-    console.log('Loaded');
+chrome.action.onClicked.addListener(tab => {
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    files: ['after.js'],
+  });
 });
