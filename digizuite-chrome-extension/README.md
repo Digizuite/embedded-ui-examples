@@ -2,8 +2,16 @@
 
 This project is based on the Digizuite [Unified DAM Connector](https://digizuite.atlassian.net/wiki/spaces/DD/pages/3177121185/MM5.6+Unified+DAM+Connector) together with [Chrome Extension - Getting started](https://developer.chrome.com/docs/extensions/mv3/getstarted/).
 
-## Adding the Unified DAM Connector
+The project has two folders. One for each variant of the Digizuite Chrome Extension. 
+```
+    embedded-ui // illustrates how to use the Unified DAM Connector and how to customize with own Media Manager and how to listen to clicks to insert own functionality.
+    out-of-box // Out-of-box experience which requires no further setup. Simply add it to chrome and your users can enter their URL directly from there.
+    
+```
 
+S
+
+## Adding the Unified DAM Connector
 
 All the magic happens in the after.js. First ensure that you have added a correct Media Manager URL:
 ```
@@ -73,6 +81,9 @@ Obviously, you have the flexibility to change what happens when the asset is cli
 
 Please read the Unified DAM Conenctor documentation for more information [here](https://digizuite.atlassian.net/wiki/spaces/DD/pages/3092348945/MM5.5+Unified+DAM+Connector).
 
+## Using the Out-of-Box
+
+If you have no need for customized functionality then you can simply use the out-of-box. It has a wrapper that allows you to simply add it to chrome (see next steps) without having to change anything in the code first. The embedded version requires you to change the src url in the iframe to your own media manager URL before adding it. Otherwise no change.
 
 ## Adding it to Chrome
 
@@ -85,7 +96,7 @@ Please read the Unified DAM Conenctor documentation for more information [here](
 
 3. Download or clone this repo (the contents of src folder is what is important)
 
-3. Press 'Load Unpacked' and navigate to digizuite-chrome-extension/src and then 'Select Folder'
+3. Press 'Load Unpacked' and navigate to 'digizuite-chrome-extension/embedded' or 'digizuite-chrome-extension/out-of-box' and then 'Select Folder'
 
 4. See the extension in the list of extesions
 

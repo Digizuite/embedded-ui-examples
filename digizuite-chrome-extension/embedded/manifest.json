@@ -1,0 +1,26 @@
+{
+  "name": "Digizuite™ DAM Connector",
+  "description": "Add Digizuite Embedded UI to chrome and benefit from your single source of truth.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["scripting", "activeTab"],
+  "action": {
+    "default_title": "Digizuite DAM",
+    "default_icon": {
+      "16": "/images/digizuite_logo16.png",
+      "32": "/images/digizuite_logo32.png",
+      "48": "/images/digizuite_logo48.png",
+      "128": "/images/digizuite_logo128.png"
+    }
+  },
+  "host_permissions": ["https://*/*", "http://*/*"],
+  "icons": {
+    "16": "/images/digizuite_logo16.png",
+    "32": "/images/digizuite_logo32.png",
+    "48": "/images/digizuite_logo48.png",
+    "128": "/images/digizuite_logo128.png"
+  }
+}
