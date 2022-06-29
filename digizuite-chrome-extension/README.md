@@ -4,12 +4,12 @@ This project is based on the Digizuite [Unified DAM Connector](https://digizuite
 
 The project has two folders. One for each variant of the Digizuite Chrome Extension. 
 ```
-    embedded-ui // illustrates how to use the Unified DAM Connector and how to customize with own Media Manager and how to listen to clicks to insert own functionality.
+    embedded // illustrates how to use the Unified DAM Connector and how to customize with own Media Manager and how to listen to clicks to insert own functionality.
     out-of-box // Out-of-box experience which requires no further setup. Simply add it to chrome and your users can enter their URL directly from there.
     
 ```
 
-S
+Most of the readme will focus on the embedded variant. This is where you can are allowed to customize and listen to asset clicks directly from your Digizuite Media Manager embedded UI.
 
 ## Adding the Unified DAM Connector
 
