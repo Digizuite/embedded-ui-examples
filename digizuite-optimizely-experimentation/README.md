@@ -8,7 +8,7 @@ It  consists of two elements:
 
 ## Digizuite Browser Extension
 
-For you to use the browser extension together with the Optimizely Experimentation Extension, then it is important to do one simply change but otherwise simply  follow the guide as described. [here](../digizuite-chrome-extension/README.md). The important is to use the custom-embedded version of the Chrome Extension (can be used across browsers) since we need to customize one simple thing.
+For you to use the browser extension together with the Optimizely Experimentation Extension, then it is important to do one simply change but otherwise simply  follow the guide as described [here](../digizuite-chrome-extension/README.md). The important is to use the custom-embedded version of the Chrome Extension (can be used across browsers) since we need to customize one simple thing.
 
 The thing to change is to no longer copy/paste the download URL but instead just the asset id because this is how the Optimizely Extension works. So ensure this logic where event.data.asset.assetId must be in the clipboard.writeTest statement:
 Registering and reacting to users selecting assets in the Unified DAM Connector:
