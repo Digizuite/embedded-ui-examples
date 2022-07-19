@@ -9,3 +9,6 @@ Read more [here](/digizuite-for-miro/README.md).
 
 ## Digizuite for Umbraco
 Read more [here](/digizuite-for-umbraco/README.md).
+
+## Digizuite Optimizely Experimentation
+Read more [here](/digizuite-optimizely-experimentation/README.md).
