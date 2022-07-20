@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Digizuite Browser Extension Settings</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="digizuite-browser-settings">
+
+        </div>
+        <div class="baseUrl-container">
+            <div class="baseUrl-header">
+                <p>Digizuite Browser Extension Settings</p>
+            </div>
+            <div class="baseUrl-form">
+                <div class="baseUrl-icon-wrapper">
+                    <div class="baseUrl-icon">
+                    <i class="icon-link"></i>
+                    </div>
+                    <p>Here you can configure behaviour of your browser extension.</p>
+                </div>
+            </div>
+                
+            <div class="baseUr-wrapper">
+                <label for="mmUrl">Media Manager URL</label>
+                <input
+                class="baseUrlField"
+                placeholder="Paste or write the url here"
+                name="mmUrl" id="mmUrl"
+                type="text"
+                />
+                <br>
+                <label for="onlyAssetId">Copy only asset id? (default is whole URL)</label>
+                <input
+                    class="checkBoxField"
+                    placeholder="Copy only asset ID"
+                    type="checkbox"
+                    name="onlyAssetId"
+                    id="onlyAssetId"
+                />
+                <br>
+                <button id="save" class="base-submit-button">Save</button>
+                <br>
+                <div hidden="true" id="successfull">
+                    <span>Saved!</span>
+                  </div>
+            </div>
+        </div>
+
+        <script src="options.js"></script>
+    </body>
+</html>
