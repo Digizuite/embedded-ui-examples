@@ -6,10 +6,11 @@
     return;
   }
 
-  chrome.storage.sync.get([ 'mmUrl', 'onlyAssetId', 'mediaFormatId', 'publicDestination'], function(result) {
+  chrome.storage.sync.get([ 'mmUrl', 'onlyAssetId', 'mediaFormatId', 'publicDestination', 'cdnUrl'], function(result) {
     var mediaManagerUrl = result.mmUrl;
     var mediaFormatId = result.mediaFormatId;
     var publicDestination = result.publicDestination;
+    var cdnUrl = result.cdnUrl;
 
     var container = document.createElement('div');
     container.className = 'browser-extension-container';
@@ -46,7 +47,7 @@
               copyString = event.data.asset.assetId;
             } else if(publicDestination && publicDestination.length > 0) {
               // Replacing access key and stuff
-              copyString = handleDestinationAndAccessKey(copyString, publicDestination, mediaFormatId);
+              copyString = handleDestinationAndAccessKey(copyString, publicDestination, mediaFormatId, cdnUrl);
             }
             navigator.clipboard.writeText(copyString).then(function() {
               console.log("Async: Copying to clipboard was successful!");
@@ -76,9 +77,9 @@
 
   });
 
-  function handleDestinationAndAccessKey(urlString, destinationId, mediaFormatId) {
+  function handleDestinationAndAccessKey(urlString, destinationId, mediaFormatId, cdnUrl) {
     // if no destination then just return URL
-    const assetUrl = new URL(urlString);
+    let assetUrl = new URL(urlString);
     var urlParams = assetUrl.searchParams;
     if (!destinationId) {
       return urlParams;
@@ -96,8 +97,15 @@
     if(mediaFormatId && mediaFormatId.length > 0) {
       newParams.set('mediaformatid', mediaFormatId);
     }
-  
+
+    if(cdnUrl && cdnUrl.length > 0) {
+      var newCdnAssetUrl = new URL('', cdnUrl);
+      newCdnAssetUrl.pathname = assetUrl.pathname.replace('//', '/');
+      assetUrl = newCdnAssetUrl;
+    }
+
     assetUrl.search = newParams.toString();
+  
     return assetUrl.toString();
   }
   
