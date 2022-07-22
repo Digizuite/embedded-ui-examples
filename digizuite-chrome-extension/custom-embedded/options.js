@@ -2,15 +2,17 @@
 function save_options() {
   var mmUrl = document.getElementById('mmUrl').value.replace(/\/$/, "");;
   var assetId = document.getElementById('onlyAssetId').checked;
-
-  console.log(mmUrl);
+  var mediaFormatId = document.getElementById('mediaFormatId').value;
+  var publicDestination = document.getElementById('publicDestination').value;
 
   chrome.storage.sync.set({
       mmUrl: mmUrl,
-      onlyAssetId: assetId
+      onlyAssetId: assetId,
+      publicDestination: publicDestination,
+      mediaFormatId: mediaFormatId
   });
 
-  chrome.storage.sync.get([ 'mmUrl', 'onlyAssetId'], function(items) {
+  chrome.storage.sync.get([ 'mmUrl', 'onlyAssetId', 'mediaFormatId', 'publicDestination'], function(items) {
     console.log(items);
   });
 
@@ -26,9 +28,10 @@ function save_options() {
 // stored in chrome.storage.
 function restore_options() {
   // Use default value color = 'red' and likesColor = true.
-  chrome.storage.sync.get([ 'mmUrl', 'onlyAssetId'], function(items) {
-    console.log(items);
-    document.getElementById('mmUrl').value = items.mmUrl;
+  chrome.storage.sync.get([ 'mmUrl', 'onlyAssetId', 'mediaFormatId', 'publicDestination'], function(items) {
+    document.getElementById('mmUrl').value = items.mmUrl ?? '';
+    document.getElementById('mediaFormatId').value = items.mediaFormatId ?? '';
+    document.getElementById('publicDestination').value = items.publicDestination ?? '';
     document.getElementById('onlyAssetId').checked = items.onlyAssetId;
   });
 }

@@ -6,8 +6,10 @@
     return;
   }
 
-  chrome.storage.sync.get(['mmUrl', 'onlyAssetId'], function(result) {
+  chrome.storage.sync.get([ 'mmUrl', 'onlyAssetId', 'mediaFormatId', 'publicDestination'], function(result) {
     var mediaManagerUrl = result.mmUrl;
+    var mediaFormatId = result.mediaFormatId;
+    var publicDestination = result.publicDestination;
 
     var container = document.createElement('div');
     container.className = 'browser-extension-container';
@@ -42,8 +44,9 @@
             var copyString = event.data.asset.downloadUrl;
             if(result.onlyAssetId) {
               copyString = event.data.asset.assetId;
-            } else {
-
+            } else if(publicDestination && publicDestination.length > 0) {
+              // Replacing access key and stuff
+              copyString = handleDestinationAndAccessKey(copyString, publicDestination, mediaFormatId);
             }
             navigator.clipboard.writeText(copyString).then(function() {
               console.log("Async: Copying to clipboard was successful!");
@@ -72,5 +75,31 @@
     }
 
   });
+
+  function handleDestinationAndAccessKey(urlString, destinationId, mediaFormatId) {
+    // if no destination then just return URL
+    const assetUrl = new URL(urlString);
+    var urlParams = assetUrl.searchParams;
+    if (!destinationId) {
+      return urlParams;
+    }
+  
+    const newParams = new URLSearchParams();
+    urlParams.forEach((value, key) => {
+      newParams.append(key.toLowerCase(), value);
+    });
+  
+    newParams.set('destinationid', destinationId);
+    newParams.delete('accesskey');
+    newParams.delete('assetoutputident');
+
+    if(mediaFormatId && mediaFormatId.length > 0) {
+      newParams.set('mediaformatid', mediaFormatId);
+    }
+  
+    assetUrl.search = newParams.toString();
+    return assetUrl.toString();
+  }
+  
 
 })();

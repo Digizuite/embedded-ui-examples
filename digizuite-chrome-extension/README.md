@@ -2,13 +2,7 @@
 
 This project is based on the Digizuite [Unified DAM Connector](https://digizuite.atlassian.net/wiki/spaces/DD/pages/3177121185/MM5.6+Unified+DAM+Connector) together with [Chrome Extension - Getting started](https://developer.chrome.com/docs/extensions/mv3/getstarted/).
 
-The project has two folders. One for each variant of the Digizuite Chrome Extension. 
-```
-    custom-embedded // Use the Unified DAM Connector and customize with own Media Manager and how to listen to clicks to insert own functionality.
-    out-of-box // Out-of-box experience which requires no further setup. Simply add it to chrome and your users can enter their URL directly from there.
-```
-
-Most of the readme will focus on the embedded variant. This is where you can are allowed to customize and listen to asset clicks directly from your Digizuite Media Manager embedded UI.
+The Digizuite DAM Connector for Chrome is already on [Chrome Web Store](https://chrome.google.com/webstore/detail/digizuite-dam-connector/oaoljlnnfajdknoldafoelalijmaebkg). It is based on this example here which is also available for your benefit if wanting to customize specifically to your needs outside of what the standard extension can do.
 
 ## Custom Embedded: Adding the Unified DAM Connector
 
@@ -79,10 +73,6 @@ Registering and reacting to users selecting assets in the Unified DAM Connector:
 Obviously, you have the flexibility to change what happens when the asset is clicked.
 
 Please read the Unified DAM Conenctor documentation for more information [here](https://digizuite.atlassian.net/wiki/spaces/DD/pages/3092348945/MM5.5+Unified+DAM+Connector).
-
-## Out-of-box: How to configure
-
-If you have no need for customized functionality then you can simply use the out-of-box. It has a wrapper that allows you to simply add it to chrome (see next steps) without having to change anything in the code first. The embedded version requires you to change the src url in the iframe to your own media manager URL before adding it. Otherwise no change.
 
 ## Adding it to Chrome
 
