@@ -1,7 +1,7 @@
 {
   "name": "Digizuite™ DAM Connector",
   "description": "Add Digizuite Embedded UI to chrome and benefit from your single source of truth.",
-  "version": "1.1",
+  "version": "1.2",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js"
@@ -25,7 +25,8 @@
       ],
       "exclude_matches": [
         "https://*.digizuite.com/*",
-        "https://*.digizuiteusa.com/*"
+        "https://*.digizuiteusa.com/*",
+        "https://*.atlassian.net/*"
       ],
       "css": ["style.css"]
     } 
