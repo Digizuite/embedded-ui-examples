@@ -1,0 +1,56 @@
+{
+  "plugin_type": "widget",
+  "name": "Digizuite Video Extension",
+  "edit_page_url": "https://digizuite.com",
+  "form_schema": [
+    {
+      "default_value": 21678,
+      "field_type": "text",
+      "name": "digizuite_asset_id",
+      "label": "Digizuite Asset Id",
+      "options": null
+    },
+    {
+      "default_value": "300",
+      "field_type": "text",
+      "name": "digizuite_video_width",
+      "label": "Digizuite Video Width",
+      "options": null
+    },
+    {
+      "default_value": "300",
+      "field_type": "text",
+      "name": "digizuite_video_height",
+      "label": "Digizuite Video Height",
+      "options": null
+    },
+    {
+      "default_value": "https://mm-dam.dev.digizuite.com/",
+      "field_type": "text",
+      "name": "digizuite_dam_cdn_url",
+      "label": "Digizuite DAM CDN URL",
+      "options": null
+    },
+    {
+      "default_value": 50034,
+      "field_type": "number",
+      "name": "digizuite_mediaformat_id",
+      "label": "Digizuite Media Format ID",
+      "options": null
+    },
+    {
+      "default_value": 10016,
+      "field_type": "number",
+      "name": "digizuite_destination_id",
+      "label": "Digizuite Destination ID",
+      "options": null
+    }
+  ],
+  "description": "",
+  "options": {
+    "html": "<div id=\"optimizely-extension-{{ extension.$instance }}\" class=\"test\">\n   <br><br> <br><br> <br><br>\t<br>  \n  <video width=\"{{ extension.digizuite_video_width }\" height=\"{{ extension.digizuite_video_height }}\t\" controls>\n    <source src=\"{{ extension.digizuite_dam_cdn_url }}/dmm3bwsv3/assetstream.aspx?assetid={{ extension.digizuite_asset_id }}&mediaformatid={{ extension.digizuite_mediaformat_id }}&destinationid={{ extension.digizuite_destination_id }}\" type=\"video/mp4\">\n        Your browser does not support the video tag.\n  </video>\n</div>\t",
+    "css": ".test {\n  border-bottom: 1px solid #e0d769;\n  color: black;\n  padding: 10px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 20px;\n}",
+    "apply_js": "/*\n * Editor now supports ES6 compliant code. Note that adding ES6\n * specific code to an experiment will break for users running\n * ES5-only browsers as code entered is not transpiled down to ES5.\n */\n\n  const utils = optimizely.get('utils');\n\n  utils.waitForElement('body')\n  .then(function(elem) {\n    // Prepend the extension html to the body\n    elem.insertAdjacentHTML('afterbegin', extension.$html);\n  });\n",
+    "undo_js": "/*\n * Editor now supports ES6 compliant code. Note that adding ES6\n * specific code to an experiment will break for users running\n * ES5-only browsers as code entered is not transpiled down to ES5.\n */\n \n  const extensionElement = document.getElementById('optimizely-extension-' + extension.$instance);\n  if (extensionElement) {\n    extensionElement.parentElement.removeChild(extensionElement);\n  }\n"
+  }
+}

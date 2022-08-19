@@ -1,120 +1,120 @@
 {
-    "plugin_type": "widget",
-    "name": "test",
-    "edit_page_url": "https://website.com",
-    "form_schema": [
-      {
-        "default_value": null,
-        "field_type": "text",
-        "name": "digizuite_asset_id",
-        "label": "Digizuite Asset Id",
-        "options": null
-      },
-      {
-        "default_value": "600",
-        "field_type": "text",
-        "name": "digizuite_image_width",
-        "label": "Digizuite Image Width",
-        "options": null
-      },
-      {
-        "default_value": null,
-        "field_type": "text",
-        "name": "digizuite_image_height",
-        "label": "Digizuite Image Height",
-        "options": null
-      },
-      {
-        "default_value": "https://your-digizuite-dam-cdn-url.com/",
-        "field_type": "text",
-        "name": "digizuite_dam_cdn_url",
-        "label": "Digizuite DAM CDN URL",
-        "options": null
-      },
-      {
-        "default_value": 2,
-        "field_type": "number",
-        "name": "digizuite_mediaformat_id",
-        "label": "Digizuite Media Format ID",
-        "options": null
-      },
-      {
-        "default_value": 10016,
-        "field_type": "number",
-        "name": "digizuite_destination_id",
-        "label": "Digizuite Destination ID",
-        "options": null
-      },
-      {
-        "default_value": "",
-        "field_type": "dropdown",
-        "name": "digizuite_crop_gravity",
-        "label": "Crop Gravity (requires >= 5.6.0)",
-        "options": {
-          "choices": [
-            {
-              "value": "",
-              "label": "No crop"
-            },
-            {
-              "value": "Center",
-              "label": "Center"
-            },
-            {
-              "value": "Northwest",
-              "label": "Northwest"
-            },
-            {
-              "value": "North",
-              "label": "North"
-            },
-            {
-              "value": "Northeast",
-              "label": "Northeast"
-            },
-            {
-              "value": "West",
-              "label": "West"
-            },
-            {
-              "value": "East",
-              "label": "East"
-            },
-            {
-              "value": "Southwest",
-              "label": "Southwest"
-            },
-            {
-              "value": "South",
-              "label": "South"
-            },
-            {
-              "value": "Southeast",
-              "label": "Southeast"
-            }
-          ]
-        }
-      },
-      {
-        "default_value": null,
-        "field_type": "text",
-        "name": "digizuite_crop_height",
-        "label": "Crop Height (with Gravity set)",
-        "options": null
-      },
-      {
-        "default_value": null,
-        "field_type": "text",
-        "name": "digizuite_crop_width",
-        "label": "Crop Width (with Gravity set)",
-        "options": null
+  "plugin_type": "widget",
+  "name": "Digizuite Image Extension",
+  "edit_page_url": "https://digizuite.com",
+  "form_schema": [
+    {
+      "default_value": 22810,
+      "field_type": "text",
+      "name": "digizuite_asset_id",
+      "label": "Digizuite Asset Id",
+      "options": null
+    },
+    {
+      "default_value": "300",
+      "field_type": "text",
+      "name": "digizuite_image_width",
+      "label": "width",
+      "options": null
+    },
+    {
+      "default_value": "300",
+      "field_type": "text",
+      "name": "digizuite_image_height",
+      "label": "Digizuite Image Height",
+      "options": null
+    },
+    {
+      "default_value": "https://digizuite-cdn-dam-url.com/",
+      "field_type": "text",
+      "name": "digizuite_dam_cdn_url",
+      "label": "Digizuite DAM CDN URL",
+      "options": null
+    },
+    {
+      "default_value": 50034,
+      "field_type": "number",
+      "name": "digizuite_mediaformat_id",
+      "label": "Digizuite Media Format ID",
+      "options": null
+    },
+    {
+      "default_value": 10016,
+      "field_type": "number",
+      "name": "digizuite_destination_id",
+      "label": "Digizuite Destination ID",
+      "options": null
+    },
+    {
+      "default_value": "Center",
+      "field_type": "dropdown",
+      "name": "digizuite_crop_gravity",
+      "label": "Crop Gravity (requires >= 5.6.0)",
+      "options": {
+        "choices": [
+          {
+            "value": "",
+            "label": "No crop"
+          },
+          {
+            "value": "Center",
+            "label": "Center"
+          },
+          {
+            "value": "Northwest",
+            "label": "Northwest"
+          },
+          {
+            "value": "North",
+            "label": "North"
+          },
+          {
+            "value": "Northeast",
+            "label": "Northeast"
+          },
+          {
+            "value": "West",
+            "label": "West"
+          },
+          {
+            "value": "East",
+            "label": "East"
+          },
+          {
+            "value": "Southwest",
+            "label": "Southwest"
+          },
+          {
+            "value": "South",
+            "label": "South"
+          },
+          {
+            "value": "Southeast",
+            "label": "Southeast"
+          }
+        ]
       }
-    ],
-    "description": "",
-    "options": {
-      "html": "<div id=\"optimizely-extension-{{ extension.$instance }}\" class=\"test\">\n  <img src=\"{{ extension.digizuite_dam_cdn_url }}/dmm3bwsv3/assetstream.aspx?assetid={{ extension.digizuite_asset_id }}&mediaformatid={{ extension.digizuite_mediaformat_id }}&destinationid={{ extension.digizuite_destination_id }}&function=resize&height={{ extension.digizuite_image_height }}&width={{ extension.digizuite_image_width }}&mimeType=image%2Fjpeg&aspectType=1&force=true&quality=80&gravity={{ extension.digizuite_crop_gravity }}&cH={{ extension.digizuite_crop_height }}&cW={{ extension.digizuite_crop_width }}\"\t/>\n</div>",
-      "css": ".test {\n  border-bottom: 1px solid #e0d769;\n  color: black;\n  padding: 10px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 20px;\n}",
-      "apply_js": "/*\n * Editor now supports ES6 compliant code. Note that adding ES6\n * specific code to an experiment will break for users running\n * ES5-only browsers as code entered is not transpiled down to ES5.\n */\n\n  const utils = optimizely.get('utils');\n\n  utils.waitForElement('body')\n  .then(function(elem) {\n    // Prepend the extension html to the body\n    elem.insertAdjacentHTML('afterbegin', extension.$html);\n  });\n",
-      "undo_js": "/*\n * Editor now supports ES6 compliant code. Note that adding ES6\n * specific code to an experiment will break for users running\n * ES5-only browsers as code entered is not transpiled down to ES5.\n */\n \n  const extensionElement = document.getElementById('optimizely-extension-' + extension.$instance);\n  if (extensionElement) {\n    extensionElement.parentElement.removeChild(extensionElement);\n  }\n"
+    },
+    {
+      "default_value": "150",
+      "field_type": "text",
+      "name": "digizuite_crop_height",
+      "label": "Crop Height (with Gravity set)",
+      "options": null
+    },
+    {
+      "default_value": "150",
+      "field_type": "text",
+      "name": "digizuite_crop_width",
+      "label": "Crop Width (with Gravity set)",
+      "options": null
     }
+  ],
+  "description": "",
+  "options": {
+    "apply_js": "/*\n * Editor now supports ES6 compliant code. Note that adding ES6\n * specific code to an experiment will break for users running\n * ES5-only browsers as code entered is not transpiled down to ES5.\n */\n\n  const utils = optimizely.get('utils');\n\n  utils.waitForElement('body')\n  .then(function(elem) {\n    // Prepend the extension html to the body\n    elem.insertAdjacentHTML('afterbegin', extension.$html);\n  });\n",
+    "html": "<div id=\"optimizely-extension-{{ extension.$instance }}\" class=\"test\">\n   <br><br> <br><br> <br><br>\t<br>\n  <img src=\"{{ extension.digizuite_dam_cdn_url }}/dmm3bwsv3/assetstream.aspx?assetid={{ extension.digizuite_asset_id }}&mediaformatid={{ extension.digizuite_mediaformat_id }}&destinationid={{ extension.digizuite_destination_id }}&function=resize&height={{ extension.digizuite_image_height }}&width={{ extension.digizuite_image_width }}&mimeType=image%2Fjpeg&aspectType=1&force=true&quality=80&gravity={{ extension.digizuite_crop_gravity }}&cH={{ extension.digizuite_crop_height }}&cW={{ extension.digizuite_crop_width }}\"\t/>\n</div>\t",
+    "css": ".test {\n  border-bottom: 1px solid #e0d769;\n  color: black;\n  padding: 10px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 20px;\n}",
+    "undo_js": "/*\n * Editor now supports ES6 compliant code. Note that adding ES6\n * specific code to an experiment will break for users running\n * ES5-only browsers as code entered is not transpiled down to ES5.\n */\n \n  const extensionElement = document.getElementById('optimizely-extension-' + extension.$instance);\n  if (extensionElement) {\n    extensionElement.parentElement.removeChild(extensionElement);\n  }\n"
   }
+}
