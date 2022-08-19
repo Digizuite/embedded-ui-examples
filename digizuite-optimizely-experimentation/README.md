@@ -3,33 +3,12 @@
 This project is an example of how to use Digizuite with Optimizely Experimentation. The overall guide is found in the [Digizuite Documentation](https://digizuite.atlassian.net/wiki/spaces/DD/pages/3294593025/How+to+use+Extension).
 
 It  consists of two elements:
-1. Digizuite Browser Extension based on the logic from [here](../digizuite-chrome-extension/README.md) where users can select asset ids.
+1. Digizuite Browser Extension (https://digizuite.atlassian.net/wiki/spaces/DD/pages/3276046348/DCE+5.5+-+Installation)
 2. A config.json for the actual extension logic which can imported directly into Optimizely Experimentation from its editor (Read [here](https://docs.developers.optimizely.com/web/docs/extensions)).
 
 ## Digizuite Browser Extension
 
-For you to use the browser extension together with the Optimizely Experimentation Extension, then it is important to do one simply change but otherwise simply  follow the guide as described [here](../digizuite-chrome-extension/README.md). The important is to use the custom-embedded version of the Chrome Extension (can be used across browsers) since we need to customize one simple thing.
-
-The thing to change is to no longer copy/paste the download URL but instead just the asset id because this is how the Optimizely Extension works. So ensure this logic where event.data.asset.assetId must be in the clipboard.writeTest statement:
-Registering and reacting to users selecting assets in the Unified DAM Connector:
-```
-    window.addEventListener("message", (event) => {
-    if(event.origin === mediaManagerUrl && event?.data?.messageType === "AssetMessage") {
-        // If you need to make the asset url public, then this is where you would need to remove
-        // access key and use a different destination
-
-        // Coyping traditional download url
-		    navigator.clipboard.writeText(event.data.asset.assetId).then(function() {
-			  console.log('Async: Copying to clipboard was successful!');
-
-        // Do you wish to download instead then use 
-        // downloadFile(event.data.asset.downloadUrl)
-		  }, function(err) {
-			console.error('Async: Could not copy text: ', err);
-		  });
-    }
-  });
-```
+Simply go to https://digizuite.atlassian.net/wiki/spaces/DD/pages/3276046348/DCE+5.5+-+Installation and install it in your browser.
 
 ## Optimizely Experimentation Extension
 
