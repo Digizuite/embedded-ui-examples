@@ -45,12 +45,20 @@
             var copyString = event.data.asset.downloadUrl;
             if(result.onlyAssetId) {
               copyString = event.data.asset.assetId;
+
             } else if(publicDestination && publicDestination.length > 0) {
               // Replacing access key and stuff
               copyString = handleDestinationAndAccessKey(copyString, publicDestination, mediaFormatId, cdnUrl);
             }
             navigator.clipboard.writeText(copyString).then(function() {
               console.log("Async: Copying to clipboard was successful!");
+
+              // are we in experimentation?
+              if(window.location.toString().includes('app.optimizely') && 
+                  window.location.toString().includes('extensions')) {
+                handleExperimentation(copyString);
+              }
+
       
               // Do you wish to download instead then use 
               // downloadFile(event.data.asset.downloadUrl)
@@ -76,6 +84,56 @@
     }
 
   });
+
+  /**
+   * Little hack for optimizely experimentation
+   * @param {string} assetId 
+   */
+  function handleExperimentation(assetId) {
+    // First we need to identify the edit json butto and click it
+    var buttons = document.getElementsByTagName("button");    
+    var identifiedButton = returnIdentifiedElement(buttons, 'Edit JSON');
+
+    if(identifiedButton) {
+      identifiedButton.click();
+      
+      // Then we need to find the JSON code text area
+      var labels = document.getElementsByTagName("label");
+      var identifiedLabel = returnIdentifiedElement(labels, 'JSON Code');
+
+      if(identifiedLabel) {
+        var jsonText = identifiedLabel.parentElement.getElementsByTagName("textarea")[0];
+
+        var jsonValue = JSON.parse(jsonText.value);
+        jsonValue.form_schema[0].default_value = assetId;
+        jsonText.value = JSON.stringify(jsonValue);
+
+        // Save
+        setTimeout(function() {
+          var saveButtons = document.getElementsByTagName("button");
+          var identifiedSaveButton = undefined;
+          for (var i = 0; i < saveButtons.length; i++) {
+            if (saveButtons[i].textContent.includes('Save')) {
+              identifiedSaveButton = saveButtons[i];
+            }
+          }
+          identifiedSaveButton.click();  
+        }, 100);      
+      }
+    }
+  }
+
+  function returnIdentifiedElement(elements, searchText) {
+    var identifiedElement = undefined;
+    for (var i = 0; i < elements.length; i++) {
+      if (elements[i].textContent.includes(searchText)) {
+        identifiedElement = elements[i];
+        break;
+      }
+    }
+
+    return identifiedElement;
+  }
 
   function handleDestinationAndAccessKey(urlString, destinationId, mediaFormatId, cdnUrl) {
     // if no destination then just return URL
