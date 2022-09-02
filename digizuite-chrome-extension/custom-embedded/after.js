@@ -40,12 +40,16 @@
         if(event.origin === mediaManagerUrl && event?.data?.messageType === "AssetMessage") {
             // If you need to make the asset url public, then this is where you would need to remove
             // access key and use a different destination
-    
-            // Coyping traditional download url
-            var copyString = event.data.asset.downloadUrl;
-            if(result.onlyAssetId) {
-              copyString = event.data.asset.assetId;
 
+            var asset = event.data.asset;
+            if(event.data.assets && event.data.assets.length > 0) {
+                asset = event.data.assets[0];
+            }
+
+            // Coyping traditional download url
+            var copyString = asset.downloadUrl;
+            if(result.onlyAssetId) {
+              copyString = asset.assetId;
             } else if(publicDestination && publicDestination.length > 0) {
               // Replacing access key and stuff
               copyString = handleDestinationAndAccessKey(copyString, publicDestination, mediaFormatId, cdnUrl);
