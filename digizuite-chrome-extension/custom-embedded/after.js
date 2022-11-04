@@ -32,7 +32,7 @@
       iframe.id = 'dziframe';
       iframe.style.width = '400px';
       iframe.style.height = '100%';
-      iframe.src = `${mediaManagerUrl}/embedded`;
+      iframe.src = `${mediaManagerUrl}/embedded/`;
       container.appendChild(iframe);
 
       // Add event listener
@@ -60,7 +60,7 @@
               // are we in experimentation?
               if(window.location.toString().includes('app.optimizely') && 
                   window.location.toString().includes('extensions')) {
-                handleExperimentation(copyString);
+                 handleExperimentation(asset.assetId);
               }
 
       
