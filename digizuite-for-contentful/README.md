@@ -4,16 +4,16 @@ This project is based on @contentful/dam-app-base which is a lib provided by Con
 It allows you to create a Contentful Content Model which has a Entity Field (JSON Object type).
 
 1) Create a new content model
-![Alt text](/assets/create_content_model.png "Create content")
+![Create content](/digizuite-for-contentful/assets/create_content_model.png "Create content")
 
 2) Then create a field and select JSON Object
-![Alt text](/relative/field_type.png "Select field type")
+![Field type](/digizuite-for-contentful/assets/field_type.png "Select field type")
 
 3) Ensure to select Digizuite as Apperance for your field
-![Alt text](/relative/apperance.png "Apperance")
+![Apperance](/digizuite-for-contentful/assets/apperance.png "Apperance")
 
 4) Go to content and use your new content model to select assets from Digizuite
-![Alt text](/relative/selection.png "Selection")
+![Selection](/digizuite-for-contentful/assets/selection.png "Selection")
 
 We are soon planning on being available on the marketplace itself.
 
