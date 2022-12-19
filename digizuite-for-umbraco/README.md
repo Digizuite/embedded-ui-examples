@@ -28,4 +28,4 @@ This project is based on the Digizuite [Unified DAM Connector](https://digizuite
 
 ## Further help
 
-If you still have any questions please visit [Umbraco Digizuite integration](https://digizuite.atlassian.net/wiki/spaces/RDG/pages/3266904088/Umbraco+Digizuite+integration).
+If you still have any questions please visit [Umbraco Digizuite integration](https://digizuite.atlassian.net/wiki/spaces/DD/pages/3403677720/Digizuite+for+Umbraco).
