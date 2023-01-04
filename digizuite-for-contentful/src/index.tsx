@@ -45,7 +45,7 @@ function renderDialog(sdk: any) {
   iframe.id = 'digizuite-embedded-view';
   iframe.className = 'iframe-container';
   iframe.src = bf_embed_url;
-  iframe.width = "400";
+  iframe.width = "935";
   iframe.height = "650";
   iframe.style.border = 'none';
   container.appendChild(iframe);
@@ -80,13 +80,16 @@ function renderDialog(sdk: any) {
 }
 
 async function openDialog(sdk: any, _currentValue: Asset[], config: any) {
+
+  config.digizuiteMmUrl = sdk.parameters.instance.digizuiteMmUrl;
+
   const result = await sdk.dialogs.openCurrentApp({
     position: 'center',
     title: CTA,
     shouldCloseOnOverlayClick: true,
     shouldCloseOnEscapePress: true,
     parameters: { ...config },
-    width: 440,
+    width: 950,
     allowHeightOverflow: true,
   });
 
@@ -128,6 +131,7 @@ setup({
       name: 'Digizuite MM URL',
       description:
         'Provide your media manager URL',
+      default: "https://your-mm-url.com",
       required: true,
     },
   ],
