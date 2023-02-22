@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     const miro = window['miro'];
 
     await miro.board.ui.on('icon:click', async () => {
-      await miro.board.ui.openPanel({ url: '', height: 720, width: 400 });
+      await miro.board.ui.openPanel({ url: '', height: 720 });
     });
   }
 
