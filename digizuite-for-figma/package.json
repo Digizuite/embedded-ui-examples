@@ -1,0 +1,47 @@
+{
+  "name": "digizuite-for-figma",
+  "version": "1.0.0",
+  "description": "A template for creating Figma plugins with React for the UI element.  It supports Typescript and CSS/SCSS modules out of the box",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv dist"
+  },
+  "dependencies": {
+    "npm-check-updates": "^16.7.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@figma/plugin-typings": "^1.58.0",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@svgr/rollup": "^6.5.1",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/sass": "^1.43.1",
+    "babel-loader": "^9.1.2",
+    "edit-json-file": "^1.7.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.4",
+    "rollup": "^3.17.2",
+    "rollup-plugin-bundle-html-plus": "^1.4.0",
+    "rollup-plugin-html-bundle": "^0.0.3",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-scss": "^4.0.0",
+    "sass": "^1.58.3",
+    "sirv-cli": "^2.0.2",
+    "tslib": "^2.5.0",
+    "typescript": "4.9.5"
+  }
+}
