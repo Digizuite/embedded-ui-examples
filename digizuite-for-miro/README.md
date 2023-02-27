@@ -7,38 +7,24 @@ The integration is created as a [Miro Web-Plugin](https://developers.miro.com/do
 
 Following have been added to index.html
 ```
-<script src="https://miro.com/app/static/sdk.1.1.js"></script>
+<script src="https://miro.com/app/static/sdk/v2/miro.js"></script>
 ```
 
 Ensuring also to init miro on onInit of the app.comonent
 ```
-miro.onReady(() => {
-      const icon24 =
-        '<g> ..... </g>';
-      miro.initialize({
-        extensionPoints: {
-          bottomBar: {
-            title: 'Digizuite for Miroz',
-            svgIcon: icon24,
-            onClick: () => {
-              miro.board.ui.openLibrary('', { title: 'Digizuite for Miro' });
-            },
-          },
-          getWidgetMenuItems: () =>
-            Promise.resolve({
-              tooltip: 'Digizuite for Miroz',
-              svgIcon: icon24,
-              onClick: (widgets: any) => {
-                console.log('onClick', widgets);
-              },
-            }),
-        },
-      });
+async ngOnInit() {
+    const miro = window['miro'];
+
+    await miro.board.ui.on('icon:click', async () => {
+      await miro.board.ui.openPanel({ url: '', height: 720 });
+    });
+  }
+
 ```
 
 On click of an asset then create the image with the following
 ```
-await miro.board.widgets.create({ type: 'image', title: asset.title, url: asset.downloadUrl });
+await miro.board.createImage({ title: asset.title, url: asset.downloadUrl });
 ```
 
 

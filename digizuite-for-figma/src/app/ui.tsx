@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ui.module.scss';
 
 const UI = ({}) => {
+
+  const [provideUrl, setProvideUrl] = useState<boolean>(false);
+
   const onCreate = (assetsToReturn: any[]) => {
     parent.postMessage({ pluginMessage: { type: 'create-assets', assetsToReturn } }, '*');
   };
 
   const digiMmEmbedUrl = 'https://mm-url.com';
 
-
   React.useEffect(() => {
+
+    if(!digiMmEmbedUrl) {
+       setProvideUrl(true);
+    }
+
     // This is how we read messages sent from the plugin controller
     window.onmessage = (event) => {
       const { type, message } = event.data.pluginMessage;
@@ -36,21 +43,23 @@ const UI = ({}) => {
         }
       }
     });
-
-
   }, []);
 
   return (
     <div className={styles.container} id="mainContainer">
-
-        <iframe
-            id="digizuite-embedded-view"
-            className="iframe-container"
-            src={digiMmEmbedUrl + "/embedded"}
-            width={476}
-            height={640}
-            style={ { border: 'none' }}
-        ></iframe>
+        { provideUrl ? 
+            <>
+              
+            </> : 
+            <iframe
+              id="digizuite-embedded-view"
+              className="iframe-container"
+              src={digiMmEmbedUrl + "/embedded"}
+              width={476}
+              height={640}
+              style={ { border: 'none' }}></iframe>
+        }
+        
 
     </div>
   );
