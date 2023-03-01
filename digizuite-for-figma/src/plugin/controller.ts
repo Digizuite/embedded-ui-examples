@@ -38,7 +38,11 @@ figma.ui.onmessage = async msg => {
       figma.notify('Image too large or type not supported!', { error: true, timeout: 6000 });
     }
 
+  } else if(msg.type === 'store-client-url' && msg.clientUrl) {
+      await figma.clientStorage.setAsync('digiMmEmbedUrl', msg.clientUrl);
+  } else if(msg.type === 'load-settings') {
+      var item = await figma.clientStorage.getAsync('digiMmEmbedUrl');
+      figma.ui.postMessage({ type: 'send-client-url', payload: item });
   }
 
-  figma.closePlugin();
 };
