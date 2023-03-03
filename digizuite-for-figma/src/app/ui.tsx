@@ -60,6 +60,7 @@ const UI = ({}) => {
     // This is how we read messages sent from the plugin controller
     window.onmessage = (event: any) => {
       const { type, message, payload } = event.data.pluginMessage;
+      setLoading(false);
       if (type === 'create-assets') {
         console.log(`Figma Says: ${message}`);
       } else if(type == 'send-client-url') {
