@@ -3,7 +3,7 @@ import ChangeUrl from './components/changeurl/ChangeUrl';
 import styles from './ui.module.scss';
 
 const UI = ({}) => {
-  const [presetNewUrl, setPresentNewUrl] = useState<string>('');
+  const [presetNewUrl, setPresentNewUrl] = useState<string>('https://dmo19-mm.digizuitedam.com');
   const [provideUrl, setProvideUrl] = useState<boolean>(true);
   const [initialized, setInitialized] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
