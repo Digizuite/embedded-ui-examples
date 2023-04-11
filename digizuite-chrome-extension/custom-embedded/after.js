@@ -53,6 +53,8 @@
             } else if(publicDestination && publicDestination.length > 0) {
               // Replacing access key and stuff
               copyString = handleDestinationAndAccessKey(copyString, publicDestination, mediaFormatId, cdnUrl);
+            } else if(cdnUrl && cdnUrl.length > 0) {
+              copyString = replaceCdn(copyString, cdnUrl);
             }
             navigator.clipboard.writeText(copyString).then(function() {
               console.log("Async: Copying to clipboard was successful!");
@@ -63,7 +65,6 @@
                  handleExperimentation(asset.assetId);
               }
 
-      
               // Do you wish to download instead then use 
               // downloadFile(event.data.asset.downloadUrl)
           }, function(err) {
@@ -137,6 +138,26 @@
     }
 
     return identifiedElement;
+  }
+
+  function replaceCdn(urlString, cdnUrl) {
+    let assetUrl = new URL(urlString);
+    var urlParams = assetUrl.searchParams;
+
+    const newParams = new URLSearchParams();
+    urlParams.forEach((value, key) => {
+      newParams.append(key.toLowerCase(), value);
+    });
+
+    if(cdnUrl && cdnUrl.length > 0) {
+      var newCdnAssetUrl = new URL('', cdnUrl);
+      newCdnAssetUrl.pathname = assetUrl.pathname.replace('//', '/');
+      assetUrl = newCdnAssetUrl;
+    }
+
+    assetUrl.search = newParams.toString();
+  
+    return assetUrl.toString();
   }
 
   function handleDestinationAndAccessKey(urlString, destinationId, mediaFormatId, cdnUrl) {
