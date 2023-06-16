@@ -37,7 +37,37 @@
 
       // Add event listener
       window.addEventListener("message", (event) => {
-        if(event.origin === mediaManagerUrl && event?.data?.messageType === "AssetMessage") {
+        const isCurrentSite = event.origin === mediaManagerUrl;
+
+        if (isCurrentSite && event?.data?.messageType === "ChangeUrl") {
+
+          let requestedSite = event?.data?.mmUrl
+
+          if (!requestedSite) {
+            console.error('Could not get the requested site');
+          }
+
+          requestedSite = requestedSite.replace(/\/$/, "");
+
+          // Get the existing settings, so we make sure that we don't overwrite anything in the storage
+          chrome.storage.sync.get(['onlyAssetId', 'mediaFormatId', 'publicDestination', 'cdnUrl'], function(cached) {
+            const onlyAssetId = cached.onlyAssetId ?? '';
+            const mediaFormatId = cached.mediaFormatId ?? '';
+            const publicDestination = cached.publicDestination ?? '';
+            const cdnUrl = cached.cdnUrl ?? '';
+
+            // Update the mmUrl
+            chrome.storage.sync.set({
+              mmUrl: requestedSite,
+              onlyAssetId,
+              publicDestination,
+              mediaFormatId,
+              cdnUrl
+            });
+          });
+        }
+
+        if(isCurrentSite && event?.data?.messageType === "AssetMessage") {
             // If you need to make the asset url public, then this is where you would need to remove
             // access key and use a different destination
 
