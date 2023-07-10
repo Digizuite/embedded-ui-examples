@@ -185,6 +185,11 @@
       assetUrl = newCdnAssetUrl;
     }
 
+    newParams.delete('accesskey');
+    newParams.delete('assetoutputident');
+    newParams.delete('cachebust');
+    newParams.delete('downloadname');
+
     assetUrl.search = newParams.toString();
   
     return assetUrl.toString();
@@ -206,10 +211,13 @@
     newParams.set('destinationid', destinationId);
     newParams.delete('accesskey');
     newParams.delete('assetoutputident');
+    newParams.delete('cachebust');
+    newParams.delete('downloadname');
 
     if(mediaFormatId && mediaFormatId.length > 0) {
       newParams.set('mediaformatid', mediaFormatId);
     }
+    newParams.set('lastmodified', new Date().getTime().toString());
 
     if(cdnUrl && cdnUrl.length > 0) {
       var newCdnAssetUrl = new URL('', cdnUrl);
@@ -219,8 +227,7 @@
 
     assetUrl.search = newParams.toString();
   
-    return assetUrl.toString();
+    return assetUrl.toString().toLowerCase();
   }
-  
 
 })();
