@@ -1,3 +1,5 @@
+const assetMessageMessage = 'AssetMessage';
+
 function handleAssetMessageEvent(event, onlyAssetId, mediaFormatId, publicDestination, cdnUrl) {
     // If you need to make the asset url public, then this is where you would need to remove
     // access key and use a different destination
@@ -157,7 +159,7 @@ window.addEventListener("message", (event) => {
 
         const isCurrentSite = event.origin === mediaManagerUrl;
 
-        if (isCurrentSite && event?.data?.messageType === 'AssetMessage') {
+        if (isCurrentSite && event?.data?.messageType === assetMessageMessage) {
             handleAssetMessageEvent(event, onlyAssetId, mediaFormatId, publicDestination, cdnUrl);
         }
     });

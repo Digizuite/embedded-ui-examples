@@ -1,26 +1,14 @@
-function handleChangeUrlEvent(event) {
-    const requestedSite = event.data.mmUrl.replace(/\/$/, "");
+const ChangeUrlMessage = "ChangeUrl";
 
-    if (!requestedSite) {
-        console.error('Could not get the requested site');
-        return;
+window.addEventListener("message", event => {
+    if (event?.data?.messageType === ChangeUrlMessage) {
+        const receivedData = event.data;
+        chrome.runtime.sendMessage({
+            action: ChangeUrlMessage,
+            data: {
+                requestedSite: receivedData.mmUrl.replace(/\/$/, ""),
+                origin: event.origin,
+            }
+        });
     }
-
-    // Update the mmUrl
-    chrome.storage.sync.set({mmUrl: requestedSite});
-
-    // Send message to background.js
-    chrome.runtime.sendMessage({ action: 'ChangeUrl' });
-}
-
-window.addEventListener("message", (event) => {
-    chrome.storage.sync.get(['mmUrl'], result =>  {
-        const mediaManagerUrl = result.mmUrl;
-
-        const isCurrentSite = event.origin === mediaManagerUrl;
-
-        if (isCurrentSite && event?.data?.messageType === 'ChangeUrl') {
-            handleChangeUrlEvent(event);
-        }
-    });
 });

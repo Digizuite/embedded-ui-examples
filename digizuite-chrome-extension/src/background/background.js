@@ -1,5 +1,7 @@
 import { createMenu } from './contextMenus.js';
-import { closeWindow, openWindow } from "./openWindow.js";
+import { openWindow } from "./openWindow.js";
+import { changeUrlEventHandler } from "./events/change-url-event-handler.js";
+import { messageTypes } from "../models/messageTypes.js";
 
 // Create context menu when the extension is installed
 chrome.runtime.onInstalled.addListener(() => {
@@ -11,11 +13,9 @@ chrome.action.onClicked.addListener(() => {
    openWindow();
 });
 
-// Event listener for when the user changes the url in the extension
+// Event listener for messages from content scripts that don't interact with the DOM
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-   if (request.action === 'ChangeUrl') {
-      // We have to close the existing window before we can open a new one with the updated URL
-      closeWindow();
-      openWindow();
+   if (request.action === messageTypes.changeUrl) {
+      changeUrlEventHandler(request.data);
    }
 });
