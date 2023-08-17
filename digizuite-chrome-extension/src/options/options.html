@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Digizuite Chrome Extension Settings</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="options.css">
+    </head>
+    <body>
+        <div class="container">
+            <div>
+                <div class="baseUrl-container">
+                    <div class="baseUrl-header">
+                        <p>Digizuite Browser Extension Settings</p>
+                    </div>
+                    <div class="baseUrl-form">
+                        <div class="baseUrl-icon-wrapper">
+                            <div class="baseUrl-icon">
+                                <i class="digizuite-icon-link"></i>
+                            </div>
+                            <p>Here you can configure behaviour of your browser extension.</p>
+                        </div>
+                    </div>
+
+                    <div class="baseUrl-wrapper">
+                        <label class="digizuite-label" for="mmUrl">Media Manager URL</label>
+                        <input class="baseUrlField" placeholder="Paste or write the url here" name="mmUrl" id="mmUrl" type="text" />
+
+                        <br>
+
+                        <label class="digizuite-label" for="onlyAssetId">Copy only asset id? (default is whole URL)</label>
+                        <input class="checkBoxField" placeholder="Copy only asset ID" type="checkbox" name="onlyAssetId" id="onlyAssetId" />
+
+                        <br>
+
+                        <label class="digizuite-label" for="publicDestination">Public Destination (optional)</label>
+                        <input class="baseUrlField" placeholder="Paste or write the public destination id" name="publicDestination" id="publicDestination" type="text" />
+
+                        <br>
+
+                        <label class="digizuite-label" for="mediaFormatId">Media Format Id (optional)</label>
+                        <input class="baseUrlField" placeholder="Media format id to use for public destination" name="mediaFormatId" id="mediaFormatId" type="text" />
+
+                        <br>
+
+                        <label class="digizuite-label" for="cdnUrl">CDN URL (recommended with public destination)</label>
+                        <input class="baseUrlField" placeholder="CDN url to use with public destination" name="cdnUrl" id="cdnUrl" type="text" />
+
+                        <br>
+
+                        <button id="save-btn" class="base-submit-button">Save</button>
+
+                        <br>
+
+                        <div id="successful">
+                            <span>Saved!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="application/javascript" src="options.js"></script>
+    </body>
+</html>
