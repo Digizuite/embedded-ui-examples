@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.digizuite-label {
+    font-family: Avenir Next Demi, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #171717;
+
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.digizuite-icon-link {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 16px;
+}
+
+input#baseUrlField {
+    font-family: Avenir Next, sans-serif;
+    font-size: 14px;
+    color: #666666;
+
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    transition: border-bottom-color 100ms ease-in-out;
+
+    height: 38px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+}
+
+input#baseUrlField:focus {
+    border-bottom: 1px solid rgb(49, 182, 159) !important;
+    outline: none;
+    outline-offset: 0;
+}
+
+.checkBoxField {
+    padding: 0;
+    margin-right: auto;
+}
