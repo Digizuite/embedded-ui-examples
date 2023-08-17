@@ -19,10 +19,9 @@
     "128": "src/assets/digizuite_logo128.png"
   },
   "background": {
-    "service_worker": "src/background.js"
+    "service_worker": "src/background/background.js",
+    "type": "module"
   },
-  "permissions": ["activeTab", "storage", "contextMenus"],
-  "host_permissions": ["http://*/*", "https://*/*"],
   "content_scripts": [
     {
       "run_at": "document_end",
@@ -36,9 +35,11 @@
         "https://*.atlassian.net/*"
       ],
       "all_frames": true,
-      "js": ["src/content.js"]
+      "js": ["src/content-scripts/change-url-event.js", "src/content-scripts/asset-message-event.js"]
     }
   ],
+  "permissions": ["activeTab", "storage", "contextMenus"],
+  "host_permissions": ["http://*/*", "https://*/*"],
   "homepage_url": "https://www.digizuite.com/",
   "options_page": "src/options/options.html"
 }
