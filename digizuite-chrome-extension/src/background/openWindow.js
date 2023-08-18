@@ -20,7 +20,7 @@ export function openWindow() {
             chrome.windows.create({
                 type: 'popup',
                 ...customOptions,
-                url: url.toString(),
+                url,
             }, window => {
                 currentWindowId = window.id;
             });
