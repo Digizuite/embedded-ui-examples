@@ -1,7 +1,43 @@
-const MessageTypes = {
-    ChangeUrl: "ChangeUrl",
-    AssetMessage: "AssetMessage"
+const assetMessageMessage = 'AssetMessage';
+
+function handleAssetMessageEvent(event, onlyAssetId, mediaFormatId, publicDestination, cdnUrl) {
+    // If you need to make the asset url public, then this is where you would need to remove
+    // access key and use a different destination
+
+    let asset = event.data.asset;
+    if(event.data.assets && event.data.assets.length > 0) {
+        asset = event.data.assets[0];
+    }
+
+    // Copying traditional download url
+    let copyString = asset.downloadUrl;
+    if(onlyAssetId) {
+        copyString = asset.assetId;
+    } else if(publicDestination && publicDestination.length > 0) {
+        // Replacing access key and stuff
+        copyString = handleDestinationAndAccessKey(copyString, publicDestination, mediaFormatId, cdnUrl);
+    } else if(cdnUrl && cdnUrl.length > 0) {
+        copyString = replaceCdn(copyString, cdnUrl);
+    }
+
+    navigator.clipboard.writeText(copyString)
+        .then(() => {
+            console.log("Async: Copying to clipboard was successful!");
+
+            // Check if we are in an experimentation environment
+            if (window.location.toString().includes('app.optimizely') &&
+                window.location.toString().includes('extensions')) {
+                handleExperimentation(asset.assetId);
+            }
+
+            // If you want to download instead, use this:
+            // downloadFile(event.data.asset.downloadUrl)
+        })
+        .catch(error => {
+            console.error('Async: Could not copy text: ', error);
+        });
 }
+
 
 /**
  * Little hack for optimizely experimentation
@@ -123,63 +159,8 @@ window.addEventListener("message", (event) => {
 
         const isCurrentSite = event.origin === mediaManagerUrl;
 
-        if (isCurrentSite && event?.data?.messageType === MessageTypes.ChangeUrl) {
-            const requestedSite = event?.data?.mmUrl?.replace(/\/$/, "");
-
-            if (!requestedSite) {
-                console.error('Could not get the requested site');
-                return;
-            }
-
-            // Update the mmUrl
-            chrome.storage.sync.set({
-                mmUrl: requestedSite,
-                onlyAssetId,
-                publicDestination,
-                mediaFormatId,
-                cdnUrl
-            });
-
-            // Send message to background.js
-            chrome.runtime.sendMessage({ action: MessageTypes.ChangeUrl });
-        }
-
-        if (isCurrentSite && event?.data?.messageType === MessageTypes.AssetMessage) {
-            // If you need to make the asset url public, then this is where you would need to remove
-            // access key and use a different destination
-
-            let asset = event.data.asset;
-            if(event.data.assets && event.data.assets.length > 0) {
-                asset = event.data.assets[0];
-            }
-
-            // Copying traditional download url
-            let copyString = asset.downloadUrl;
-            if(result.onlyAssetId) {
-                copyString = asset.assetId;
-            } else if(publicDestination && publicDestination.length > 0) {
-                // Replacing access key and stuff
-                copyString = handleDestinationAndAccessKey(copyString, publicDestination, mediaFormatId, cdnUrl);
-            } else if(cdnUrl && cdnUrl.length > 0) {
-                copyString = replaceCdn(copyString, cdnUrl);
-            }
-
-            navigator.clipboard.writeText(copyString)
-                .then(() => {
-                    console.log("Async: Copying to clipboard was successful!");
-
-                    // Check if we are in an experimentation environment
-                    if (window.location.toString().includes('app.optimizely') &&
-                        window.location.toString().includes('extensions')) {
-                        handleExperimentation(asset.assetId);
-                    }
-
-                    // If you want to download instead, use this:
-                    // downloadFile(event.data.asset.downloadUrl)
-                })
-                .catch(error => {
-                    console.error('Async: Could not copy text: ', error);
-                });
+        if (isCurrentSite && event?.data?.messageType === assetMessageMessage) {
+            handleAssetMessageEvent(event, onlyAssetId, mediaFormatId, publicDestination, cdnUrl);
         }
     });
 });
