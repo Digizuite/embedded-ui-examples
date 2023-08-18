@@ -150,7 +150,7 @@ function handleDestinationAndAccessKey(urlString, destinationId, mediaFormatId, 
 }
 
 window.addEventListener("message", (event) => {
-    chrome.storage.sync.get([ 'mmUrl', 'onlyAssetId', 'mediaFormatId', 'publicDestination', 'cdnUrl'], result =>  {
+    chrome.storage.sync.get(['mmUrl', 'onlyAssetId', 'mediaFormatId', 'publicDestination', 'cdnUrl'], result =>  {
         const mediaManagerUrl = result.mmUrl;
         const onlyAssetId = result.onlyAssetId;
         const mediaFormatId = result.mediaFormatId;

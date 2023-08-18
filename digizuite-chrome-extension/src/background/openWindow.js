@@ -4,18 +4,23 @@ let currentWindowId = 0;
 
 export function openWindow() {
     focusIfExists(() => {
-        chrome.storage.sync.get(['mmUrl'], response => {
+        chrome.storage.sync.get(['mmUrl', 'mediaFormatId'], response => {
             const mediaManagerUrl = response.mmUrl;
             if (!mediaManagerUrl) {
                 openSettings();
                 return;
             }
 
+            let url = `${mediaManagerUrl}/embedded`;
+            if (response.mediaFormatId) {
+                url = `${url}?insertQuality=${response.mediaFormatId}`;
+            }
+
             const customOptions = { left: 0, top: 0, width: 650, height: 800 };
             chrome.windows.create({
                 type: 'popup',
                 ...customOptions,
-                url: `${mediaManagerUrl}/embedded/`,
+                url,
             }, window => {
                 currentWindowId = window.id;
             });
