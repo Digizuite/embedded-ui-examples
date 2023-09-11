@@ -4,13 +4,20 @@ import { changeUrlEventHandler } from "./events/change-url-event-handler.js";
 import { messageTypes } from "../models/messageTypes.js";
 import { openSettings } from "../utility/options.js";
 
-// Tasks to run after the extension is installed
+// Tasks to run after the extension is:
+// 1. First installed
+// 2. The extension is updated to a new version
+// 3. Chrome is updated to a new version
 chrome.runtime.onInstalled.addListener(() => {
    // Create the context menu
    createMenu();
 
-   // Redirect the user to the settings page
-   openSettings();
+   // Redirect the user to the settings page if they have not set the Media Manager URL
+   chrome.storage.sync.get(['mmUrl'], response => {
+      if (!response.mmUrl) {
+         openSettings();
+      }
+   });
 });
 
 // Event listener for when the user clicks on the extension icon
