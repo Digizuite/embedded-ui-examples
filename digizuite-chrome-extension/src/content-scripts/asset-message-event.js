@@ -150,17 +150,12 @@ function handleDestinationAndAccessKey(urlString, destinationId, mediaFormatId, 
 }
 
 window.addEventListener("message", (event) => {
-    chrome.storage.sync.get(['mmUrl', 'onlyAssetId', 'mediaFormatId', 'publicDestination', 'cdnUrl'], result =>  {
-        const mediaManagerUrl = result.mmUrl;
-        const onlyAssetId = result.onlyAssetId;
-        const mediaFormatId = result.mediaFormatId;
-        const publicDestination = result.publicDestination;
-        const cdnUrl = result.cdnUrl;
-
-        const isCurrentSite = event.origin === mediaManagerUrl;
-
-        if (isCurrentSite && event?.data?.messageType === assetMessageMessage) {
-            handleAssetMessageEvent(event, onlyAssetId, mediaFormatId, publicDestination, cdnUrl);
-        }
-    });
+    if (event?.data?.messageType === assetMessageMessage) {
+        chrome.runtime.sendMessage( { action: assetMessageMessage, data: { origin: event.origin, } }, (response) => {
+            if (response) {
+                const { onlyAssetId, mediaFormatId, publicDestination, cdnUrl } = response;
+                handleAssetMessageEvent(event, onlyAssetId, mediaFormatId, publicDestination, cdnUrl);
+            }
+        });
+    }
 });
