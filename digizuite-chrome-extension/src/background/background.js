@@ -30,4 +30,23 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
    if (request.action === messageTypes.changeUrl) {
       changeUrlEventHandler(request.data);
    }
+
+   if (request.action === messageTypes.assetMessage) {
+      chrome.storage.sync.get(['mmUrl', 'onlyAssetId', 'mediaFormatId', 'publicDestination', 'cdnUrl'], result =>  {
+         const mediaManagerUrl = result.mmUrl;
+         const onlyAssetId = result.onlyAssetId;
+         const mediaFormatId = result.mediaFormatId;
+         const publicDestination = result.publicDestination;
+         const cdnUrl = result.cdnUrl;
+
+         if (request.origin === mediaManagerUrl) {
+            sendResponse({
+               onlyAssetId,
+               mediaFormatId,
+               publicDestination,
+               cdnUrl,
+            });
+         }
+      });
+   }
 });
