@@ -5,6 +5,11 @@
     height: 100%;
 }
 
+.field-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .digizuite-label {
     font-family: Avenir Next Demi, sans-serif;
     font-size: 14px;
