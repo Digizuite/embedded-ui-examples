@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Digizuite™ DAM Connector",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Add Digizuite Embedded UI to chrome and benefit from your single source of truth.",
   "action": {
     "default_title": "Digizuite DAM",

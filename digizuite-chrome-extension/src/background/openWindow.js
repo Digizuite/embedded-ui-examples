@@ -11,9 +11,9 @@ export function openWindow() {
                 return;
             }
 
-            let url = `${mediaManagerUrl}/embedded`;
+            let url = `${mediaManagerUrl}/embedded?behaviourOverwrite=CopyUrl&enableMultiInsert=false`;
             if (response.mediaFormatId) {
-                url = `${url}?insertQuality=${response.mediaFormatId}`;
+                url = `${url}&insertQuality=${response.mediaFormatId}`;
             }
 
             const customOptions = { left: 0, top: 0, width: 650, height: 800 };

@@ -70,6 +70,10 @@ function updateOptions(url) {
 }
 
 async function validateCurrentProductVersion(url) {
+    if (url === 'http://localhost:4210') {
+        return true;
+    }
+
     try {
         const version = await getReleaseVersion(url);
 
@@ -87,9 +91,7 @@ async function validateCurrentProductVersion(url) {
         }
 
         return true;
-
-    }
-    catch (error) {
+    } catch (error) {
         console.error("Failed to validate current product version", error);
         mmUrlInput.setCustomValidity("An error occurred. Either the provided url is invalid or the site is unresponsive.");
         form.reportValidity();
@@ -98,10 +100,6 @@ async function validateCurrentProductVersion(url) {
 }
 
 async function getReleaseVersion(url) {
-    if (url === 'http://localhost:4210') {
-        return;
-    }
-
     try {
         const response = await fetchWithTimeout(url + '/api/config', {
             timeout: 10000,
